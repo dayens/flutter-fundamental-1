@@ -3,9 +3,7 @@ import 'package:flutter_fundamental_1/ui/home_screen.dart';
 
 void main() => runApp(MyApp());
 
-
 class MyApp extends StatelessWidget {
-
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +11,10 @@ class MyApp extends StatelessWidget {
       title: 'Daftar Restaurant',
       theme: ThemeData(),
       home: HomeScreen(),
+      initialRoute: HomeScreen.routeName,
+      routes: {
+        HomeScreen.routeName: (context) => HomeScreen(),
+      }
     );
   }
 }
