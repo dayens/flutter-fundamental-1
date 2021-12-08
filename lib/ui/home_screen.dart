@@ -11,14 +11,30 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Restaurant'),
         automaticallyImplyLeading: false,
-        actions: [
+        actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.favorite, color: Colors.red),
             tooltip: 'Favorite',
             onPressed: () {
-
-            },
-          )
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: Text('Coming Soon!'),
+                    content: Text('This feature will be coming soon!'),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text('Ok'),
+                      ),
+                    ],
+                  );
+                },
+              );
+            }
+          ),
         ],
       ),
       body: FutureBuilder<String>(
