@@ -1,3 +1,4 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fundamental_1/model/restaurant.dart';
 import 'package:flutter_fundamental_1/ui/detail_screen.dart';
@@ -12,7 +13,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Daftar Restaurant',
       theme: ThemeData(),
-      initialRoute: HomeScreen.routeName,
+      home: AnimatedSplashScreen(splash: 
+        Image.asset('images/icon_food.png', width: 64, height: 64,),
+        duration: 3000,
+        splashTransition: SplashTransition.scaleTransition,
+        nextScreen: HomeScreen(),),
       routes: {
         HomeScreen.routeName: (context) => HomeScreen(),
         DetailScreen.routeName: (context) => DetailScreen(
