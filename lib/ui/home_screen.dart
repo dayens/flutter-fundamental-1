@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fundamental_1/model/restaurant.dart';
+import 'package:flutter_fundamental_1/ui/detail_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   static const routeName = '/restaurant_list';
@@ -23,13 +24,21 @@ class HomeScreen extends StatelessWidget {
       body: FutureBuilder<String>(
         future: DefaultAssetBundle.of(context).loadString('assets/restaurant.json'),
         builder: (context, snapshot) {
-          final List<Restaurant> restaurants = parseRestaurants(snapshot.data);
-          return ListView.builder(
-            itemCount: restaurants.length,
-            itemBuilder: (context, index) {
-              return _buildRestaurantItem(context, restaurants[index]);
-            },
-          );
+          if (snapshot.connectionState != ConnectionState.done) {
+            return Center(child: CircularProgressIndicator());
+          } else {
+            if (snapshot.hasData) {
+              final List<Restaurant> restaurant = parseRestaurants(snapshot.data);
+              return ListView.builder(
+                itemBuilder: (context, index) {
+                  return _buildRestaurantItem(context, restaurant[index]);
+                },
+                itemCount: restaurant.length,
+              );
+            } else {
+              return Text('Data tidak ditemukan');
+            }
+          }
         },
       )
     );
@@ -38,7 +47,8 @@ class HomeScreen extends StatelessWidget {
   Widget _buildRestaurantItem(BuildContext context, Restaurant restaurant) {
     return InkWell(
       onTap: () {
-
+        Navigator.pushNamed(context, DetailScreen.routeName,
+        arguments: restaurant);
       },
       child: Card(
         child: Row(
