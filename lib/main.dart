@@ -12,7 +12,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Daftar Restaurant',
       theme: ThemeData(),
-      home: HomeScreen(),
       initialRoute: HomeScreen.routeName,
       routes: {
         HomeScreen.routeName: (context) => HomeScreen(),

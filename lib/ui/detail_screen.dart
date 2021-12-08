@@ -38,7 +38,6 @@ class DetailScreen extends StatelessWidget {
             Row(
               children: <Widget>[
                 Expanded(
-                  flex: 1,
                   child: Container(
                     margin: EdgeInsets.only(top: 16, left: 8, right: 8),
                     decoration: BoxDecoration(
@@ -49,7 +48,6 @@ class DetailScreen extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  flex: 1,
                   child: Container(
                     margin: EdgeInsets.only(top: 16, left: 8, right: 8),
                     decoration: BoxDecoration(
@@ -76,12 +74,11 @@ class DetailScreen extends StatelessWidget {
               child: Text(restaurant.description),
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
-                  flex: 1,
                   child: Container(
-                    margin: EdgeInsets.only(top: 8, left: 8, right: 8),
+                    margin: EdgeInsets.all(8.0),
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.black, width: 2)
                     ),
@@ -103,9 +100,8 @@ class DetailScreen extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  flex: 1,
                   child: Container(
-                    margin: EdgeInsets.only(top: 8, left: 8, right: 8),
+                    margin: EdgeInsets.all(8.0),
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.black, width: 2)
                     ),
