@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_fundamental_1/model/restaurant.dart';
 
@@ -19,15 +21,13 @@ class DetailScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Container(
-              margin: const EdgeInsets.only(top: 32, left: 8, right: 8),
+              margin: const EdgeInsets.only(top: 16),
               child: Image.network(
                 restaurant.pictureId,
-                width: 200,
-                height: 200,
               ),
             ),
             Container(
-              margin: const EdgeInsets.only(top: 32, left: 8, right: 8),
+              margin: const EdgeInsets.only(top: 16, left: 8, right: 8),
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.black, width: 2)),
               padding: const EdgeInsets.all(8.0),

@@ -3,7 +3,6 @@ import 'package:flutter_fundamental_1/model/restaurant.dart';
 import 'package:flutter_fundamental_1/ui/detail_screen.dart';
 
 class HomeScreen extends StatelessWidget {
-  static const routeName = '/restaurant_list';
 
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -75,7 +74,7 @@ class HomeScreen extends StatelessWidget {
           children: <Widget>[
             Expanded(
               flex: 1,
-              child: Image.network(restaurant.pictureId),
+              child: Image.network(restaurant.pictureId, height: 100,),
             ),
             Expanded(
               flex: 2,
