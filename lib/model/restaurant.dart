@@ -9,7 +9,7 @@ class Restaurant {
   late String rating;
   late Menus menus;
 
-  Restaurant ({
+  Restaurant({
     required this.id,
     required this.name,
     required this.description,
@@ -19,78 +19,51 @@ class Restaurant {
     required this.menus,
   });
 
-  Restaurant.fromJson(Map<String, dynamic> restaurant) {
-    id = restaurant['id'];
-    name = restaurant['name'];
-    description = restaurant['description'];
-    city = restaurant['city'];
-    pictureId = restaurant['pictureId'];
-    rating = restaurant['rating'].toString();
-    menus = (restaurant['menus'] != null ? new Menus.fromJson(restaurant['menus']) : null)!;
-  }
+  factory Restaurant.fromJson(Map<String, dynamic> json) => Restaurant(
+        id: json["id"],
+        name: json["name"],
+        description: json["description"],
+        pictureId: json["pictureId"],
+        city: json["city"],
+        rating: json["rating"].toString(),
+        menus: Menus.fromJson(json["menus"]),
+      );
 }
 
 class Menus {
-  List<Foods> foods = [];
-  List<Drinks> drinks = [];
+  Menus({
+    required this.foods,
+    required this.drinks,
+  });
 
-  Menus({required this.foods, required this.drinks});
+  List<Foods> foods;
+  List<Foods> drinks;
 
-  Menus.fromJson(Map<String, dynamic> restaurant) {
-    if (restaurant["foods"] != null) {
-      restaurant['foods'].forEach((v) {
-        foods.add(new Foods.fromJson(v));
-      });
-    }
-    if (restaurant['drinks'] != null) {
-      restaurant['drinks'].forEach((v) {
-        drinks.add(new Drinks.fromJson(v));
-      });
-    }
-  }
+  factory Menus.fromJson(Map<String, dynamic> json) => Menus(
+        foods: List<Foods>.from(json["foods"].map((x) => Foods.fromJson(x))),
+        drinks: List<Foods>.from(json["drinks"].map((x) => Foods.fromJson(x))),
+      );
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.foods != null) {
-      data['foods'] = this.foods.map((v) => v.toJson()).toList();
-    }
-    if (this.drinks != null) {
-      data['drinks'] = this.drinks.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
+  Map<String, dynamic> toJson() => {
+        "foods": List<dynamic>.from(foods.map((x) => x.toJson())),
+        "drinks": List<dynamic>.from(drinks.map((x) => x.toJson())),
+      };
 }
 
 class Foods {
-  String? name;
+  Foods({
+    required this.name,
+  });
 
-  Foods({required this.name});
+  final String name;
 
-  Foods.fromJson(Map<String, dynamic> restaurant) {
-    name = restaurant['name'];
-  }
+  factory Foods.fromJson(Map<String, dynamic> json) => Foods(
+        name: json["name"],
+      );
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    return data;
-  }
-}
-
-class Drinks {
-  String? name;
-
-  Drinks({required this.name});
-
-  Drinks.fromJson(Map<String, dynamic> restaurant) {
-    name = restaurant['name'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    return data;
-  }
+  Map<String, dynamic> toJson() => {
+        "name": name,
+      };
 }
 
 List<Restaurant> parseRestaurants(String? json) {
